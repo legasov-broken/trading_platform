@@ -8,20 +8,17 @@ import pandas as pd
 from datetime import datetime
 
 # date start
-START = "2019-10-23"
+START = "2018-10-29"
 START_datetime = datetime.strptime(START, '%Y-%m-%d').date()
 
 # date end
 TODAY_datetime = datetime.now()
 TODAY = TODAY_datetime.strftime('%Y-%m-%d')
 
-
-
-
 # listing companies on HOSE, HNX, UPCOM
 list_comp = listing_companies()
-# ticker_codes = list_comp["ticker"]
-ticker_codes = ['VCB','VNM','HPG','SSI']
+ticker_codes = list_comp["ticker"]
+# ticker_codes = ['VCB','VNM','HPG','SSI']
 
 industry_data_cache = {}
 
@@ -56,5 +53,5 @@ for ticker_code in ticker_codes:
 
 data_ticker['industry'] = data_ticker['ticker'].apply(get_industry)
 data_ticker = data_ticker.reset_index(drop=True)
-data_ticker.to_csv('ticker_data_lite.csv', index=False)
+data_ticker.to_csv('ticker_data_with_industry.csv', index=False)
 
